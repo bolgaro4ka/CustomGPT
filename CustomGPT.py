@@ -24,7 +24,7 @@ about="""    CustomGPT (КастомЖдиПиТи) является не
 
 image_text = """Поддерживается генерация изображений!
 Для этого введите:
- /генерация_изображения [запрос] [размерxразмер]
+ /генерация_изображения [запрос] [РАЗМЕРxРАЗМЕР]
 Например: /генерация_изображения кот 1024x1024"""
 # Use CTkButton instead of tkinter Button
 #button = customtkinter.CTkButton(master=app, text="CTkButton", command=button_function)
