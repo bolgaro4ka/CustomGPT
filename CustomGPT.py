@@ -22,6 +22,10 @@ about="""    CustomGPT (КастомЖдиПиТи) является не
     каким-то причинам он остался в проекте. Автор: 
     Никита Федосов (bolgaro4ka)"""
 
+image_text = """Поддерживается генерация изображений!
+Для этого введите:
+ /генерация_изображения [запрос] [размерxразмер]
+Например: /генерация_изображения кот 1024x1024"""
 # Use CTkButton instead of tkinter Button
 #button = customtkinter.CTkButton(master=app, text="CTkButton", command=button_function)
 #button.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
@@ -93,9 +97,12 @@ combobox.grid(row=18, column=56, columnspan=20)
 temp = customtkinter.CTkLabel(root, text="Температура: ")
 temp.grid(row=20, column=45, columnspan=5)
 
-slider = customtkinter.CTkSlider(root, from_=0.01, to=1, width=100, variable=temp_var, command=update_slider)
+slider = customtkinter.CTkSlider(root, from_=0, to=2, width=100, variable=temp_var, command=update_slider)
 slider.grid(row=20, column=50, columnspan=10)
 
 btn_temp=customtkinter.CTkButton(root, textvariable=temp_var)
 btn_temp.grid(row=20, column=60, columnspan=20)
+
+label = customtkinter.CTkLabel(root, text=image_text, justify="left", text_color='#888888')
+label.grid(row=25, column=45, columnspan=30, rowspan=30)
 root.mainloop()
