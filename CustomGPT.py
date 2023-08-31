@@ -26,9 +26,6 @@ image_text = """Поддерживается генерация изображе
 Для этого введите:
  /генерация_изображения [запрос] [РАЗМЕРxРАЗМЕР]
 Например: /генерация_изображения кот 1024x1024"""
-# Use CTkButton instead of tkinter Button
-#button = customtkinter.CTkButton(master=app, text="CTkButton", command=button_function)
-#button.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
 
 
 customtkinter.set_default_color_theme("green")  # Themes: "blue" (standard), "green", "dark-blue"
