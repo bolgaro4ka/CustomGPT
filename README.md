@@ -20,6 +20,7 @@ Command: "/генерация_изображения запрос РАЗМЕРх
  - pyaudio
  - torch
  - sounddevice
+ - numpy
 
 ## API keys
  - ChatGPT (https://platform.openai.com/account/api-keys)
