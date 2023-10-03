@@ -15,9 +15,6 @@ model = torch.package.PackageImporter(local_file).load_pickle("tts_models", "mod
 model.to(device)
 
 
-sample_rate = 48000
-speaker='aidar'
-
 def speak(text, sample_rate=48000, speaker='xenia'):
     audio_paths = model.apply_tts(text=text,
                                  speaker=speaker,
