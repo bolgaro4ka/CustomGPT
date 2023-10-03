@@ -26,7 +26,7 @@ main_image = main_image.resize((width_photo//3, height_photo//3)) ## The (250, 2
 main_image.save('img/temp.png')
 main_image = PhotoImage(file="img/temp.png")
 
-#qrcode=PhotoImage(file="img/qr-code.png")
+
 about="""    CustomGPT (КастомЖдиПиТи) является не 
     коммерческим проектом, основанный на языковой 
     модели ChatGPT 3.5 turbo, с графическим 
@@ -40,11 +40,6 @@ image_text = """Поддерживается генерация изображе
  /генерация_изображения [запрос] [РАЗМЕРxРАЗМЕР]
 Например: /генерация_изображения кот 1024x1024"""
 '''
-# Use CTkButton instead of tkinter Button
-#button = customtkinter.CTkButton(master=app, text="CTkButton", command=button_function)
-#button.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
-
-
 
 models=['stable-diffusion-v1',
 'stable-diffusion-v1-5',
@@ -185,18 +180,10 @@ slider.grid(row=20, column=50, columnspan=10)
 btn_temp=customtkinter.CTkButton(root, textvariable=temp_var)
 btn_temp.grid(row=20, column=60, columnspan=20)
 
-#gitbutton=customtkinter.CTkButton(root, width=240, fg_color="black", text_color="white", text="Проект на GitHub")
-#gitbutton.grid(row=22, column=45, columnspan=6, rowspan=30)
 
-#qrcodelabel=customtkinter.CTkLabel(root, text="", image=qrcode)
-#qrcodelabel.grid(row=22, column=55, columnspan=30, rowspan=30)
 
 ####################################STABILITY AI################2.0###############################################
 
-#image_label=customtkinter.CTkLabel(root, text="", image=stability, justify=LEFT)
-#image_label.grid(column=85, row=0, columnspan=50)
-
-###
 label_model=customtkinter.CTkLabel(root, text='              Model: ', justify=LEFT)
 label_model.grid(column=85, row=5)
 
