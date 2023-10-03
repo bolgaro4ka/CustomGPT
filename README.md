@@ -2,15 +2,28 @@
 ChatGPT-based CustomTkinter GUI bot with voice input and Silero TTS voice
 
 ## Images
-![Снимок экрана 2023-08-30 112435](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/c6a082ef-6c94-46dc-a380-2c7a90fe1f32)
+![Снимок экрана 2023-10-03 173833](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/91f5f9a5-c378-4cdf-8caf-bbe9b6614d62)
 
-![image](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/abf7060b-d590-4cc1-bfec-a4790a10f13b)
+![Снимок экрана 2023-10-03 174519](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/82b9213d-ddf1-4abe-b50d-57decd09d609)
+
+
+![Снимок экрана 2023-10-02 215457](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/02916077-4f6b-478b-9374-973bf584cce3)
 
 ## Generate Images
+### OpenAi
 Command: "/генерация_изображения запрос РАЗМЕРхРАЗМЕР"
 
-![Снимок экрана 2023-08-31 202405](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/cca0f13e-7bd6-45a7-912f-79597ad7cd14)
+### Stability
+Enter the query in the input line and click the "generate image" button
 
+### Exsamples
+Model: stable-diffusion-xl-1024-v1-0
+
+![Cute cats in space, 4k, realistic](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/10964603-239f-4815-b990-c4bfa595b248)
+
+Model: stable-diffusion-v1
+
+![Cute cats, 4k, realistic](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/af250e35-8edd-4708-a10f-f87209c64503)
 
 ## Imports
  - openai
@@ -21,10 +34,12 @@ Command: "/генерация_изображения запрос РАЗМЕРх
  - torch
  - sounddevice
  - numpy
+ - stability-sdk
 
 ## API keys
  - ChatGPT (https://platform.openai.com/account/api-keys)
  - OpenWeather (https://openweathermap.org/api)
+ - Stability AI (https://platform.stability.ai/account/keys)
 
 ## Downloads
  - Vosk model (https://alphacephei.com/vosk/)
