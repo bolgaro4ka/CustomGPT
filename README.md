@@ -16,7 +16,7 @@ Command: "/генерация_изображения запрос РАЗМЕРх
 ### Stability
 Enter the query in the input line and click the "generate image" button
 
-### Exsamples
+## Examples
 Model: stable-diffusion-xl-1024-v1-0
 
 ![Cute cats in space, 4k, realistic](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/10964603-239f-4815-b990-c4bfa595b248)
