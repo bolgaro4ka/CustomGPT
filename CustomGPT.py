@@ -195,10 +195,6 @@ mic_btn.grid(row=32, column=19, columnspan=10)
 mic_btn = customtkinter.CTkButton(root, text="Сгенерировать изображение", width=150, command=generate)
 mic_btn.grid(row=32, column=29, columnspan=12)
 
-my_image = customtkinter.CTkImage(light_image=Image.open("logo.png"),
-                                  dark_image=Image.open("logo.png"),
-                                  size=(187, 75))
-
 image_label = customtkinter.CTkLabel(root, image=mega_image, text="")
 image_label.grid(row=0, column=45, columnspan=90, rowspan=1)
 
