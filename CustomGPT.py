@@ -12,7 +12,7 @@ import freegpt
 apis=open('keys.apikey').read().split(', ')
 
 root = customtkinter.CTk() # create CTk window like you do with the Tk window
-root.title("CustomGPT v.2.0.1-GUI")
+root.title("CustomGPT v.2.0.2-GUI")
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark  # Themes: blue (default), dark-blue, green
 
 root.geometry()
