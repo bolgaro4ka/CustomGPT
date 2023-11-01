@@ -2,12 +2,41 @@
 ChatGPT-based CustomTkinter GUI bot with voice input and Silero TTS voice
 
 ## Images
-![Снимок экрана 2023-10-03 173833](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/91f5f9a5-c378-4cdf-8caf-bbe9b6614d62)
+![Снимок экрана 2023-11-01 171523](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/f738850f-ab82-4dfe-9e1b-8fc28f247adf)
 
-![Снимок экрана 2023-10-03 174519](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/82b9213d-ddf1-4abe-b50d-57decd09d609)
+![Снимок экрана 2023-11-01 171714](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/19095d91-1fc9-4452-83b1-66a3c2dd2721)
 
-
-![Снимок экрана 2023-10-02 215457](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/02916077-4f6b-478b-9374-973bf584cce3)
+## Update v. 2.0.1-GUI
+Changelog:
+ - Now there is free access to these models:
+    - palm
+    - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3
+    - h2ogpt-gm-oasst1-en-2048-falcon-40b-v1
+    - h2ogpt-gm-oasst1-en-2048-open-llama-13b
+    - claude-instant-v1
+    - claude-v1
+    - claude-v2
+    - command-light-nightly
+    - command-nightly
+    - gpt-neox-20b
+    - oasst-sft-1-pythia-12b
+    - oasst-sft-4-pythia-12b-epoch-3.5
+    - santacoder
+    - bloom
+    - flan-t5-xxl
+    - code-davinci-002
+    - gpt-3.5-turbo-16k
+    - **gpt-3.5-turbo-16k-0613**
+    - **gpt-4-0613**
+    - text-ada-001
+    - text-babbage-001
+    - text-curie-001
+    - text-davinci-002
+    - text-davinci-003
+    - llama13b-v2-chat
+    - llama7b-v2-chat
+ - Added a button to turn off voice response
+ - Bugfixes
 
 ## Generate Images
 ### OpenAi
@@ -35,6 +64,7 @@ Model: stable-diffusion-v1
  - sounddevice
  - numpy
  - stability-sdk
+ - g4f
 
 ## API keys
  - ChatGPT (https://platform.openai.com/account/api-keys)
