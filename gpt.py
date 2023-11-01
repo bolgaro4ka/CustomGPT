@@ -1,6 +1,5 @@
 import openai
 import requests
-import voice
 
 apis=open('keys.apikey').read().split(', ')
 openai.api_key = str(apis[0])

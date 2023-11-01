@@ -1,20 +1,19 @@
 import gpt, voice, recognize
 from tkinter import *
 from tkinter import ttk, filedialog
-import re
-from tkinter import messagebox
-from tkinter.scrolledtext import ScrolledText
 import customtkinter
 from PIL import Image
 import os
 import text_to_image
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
+import freegpt
 
+# pip install -U g4f
 apis=open('keys.apikey').read().split(', ')
 
 root = customtkinter.CTk() # create CTk window like you do with the Tk window
-root.title("CustomGPT")
-customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark  # Themes: blue (default), dark-blue, green
+root.title("CustomGPT v.2.0.1-GUI")
+customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark  # Themes: blue (default), dark-blue, green
 
 root.geometry()
 
@@ -22,11 +21,12 @@ stability=PhotoImage(file="img/stability.png")
 main_image=Image.open("img/image.png")
 mega_image=PhotoImage(file="img/mega_img.png")
 width_photo, height_photo = main_image.size
-main_image = main_image.resize((width_photo//3, height_photo//3)) ## The (250, 250) is (height, width)
+main_image = main_image.resize((int(width_photo//4.2), int(height_photo//4.2
+                                                         ))) ## The (250, 250) is (height, width)
 main_image.save('img/temp.png')
 main_image = PhotoImage(file="img/temp.png")
 
-
+#qrcode=PhotoImage(file="img/qr-code.png")
 about="""    CustomGPT (КастомЖдиПиТи) является не 
     коммерческим проектом, основанный на языковой 
     модели ChatGPT 3.5 turbo, с графическим 
@@ -40,6 +40,11 @@ image_text = """Поддерживается генерация изображе
  /генерация_изображения [запрос] [РАЗМЕРxРАЗМЕР]
 Например: /генерация_изображения кот 1024x1024"""
 '''
+# Use CTkButton instead of tkinter Button
+#button = customtkinter.CTkButton(master=app, text="CTkButton", command=button_function)
+#button.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
+
+active_voice = BooleanVar(value=False)
 
 models=['stable-diffusion-v1',
 'stable-diffusion-v1-5',
@@ -80,6 +85,32 @@ sizes=[
 '512x512'
 ]
 
+gptmodel =['palm',
+'h2ogpt-gm-oasst1-en-2048-falcon-7b-v3',
+'h2ogpt-gm-oasst1-en-2048-falcon-40b-v1',
+'h2ogpt-gm-oasst1-en-2048-open-llama-13b',
+'claude-instant-v1',
+'claude-v1',
+'claude-v2',
+'command-light-nightly',
+'command-nightly',
+'gpt-neox-20b',
+'oasst-sft-1-pythia-12b',
+'oasst-sft-4-pythia-12b-epoch-3.5',
+'santacoder',
+'bloom',
+'flan-t5-xxl',
+'code-davinci-002',
+'gpt-3.5-turbo-16k',
+'gpt-3.5-turbo-16k-0613',
+'gpt-4-0613',
+'text-ada-001',
+'text-babbage-001',
+'text-curie-001',
+'text-davinci-002',
+'text-davinci-003',
+'llama13b-v2-chat',
+'llama7b-v2-chat']
 customtkinter.set_default_color_theme("green")  # Themes: "blue" (standard), "green", "dark-blue"
 root.geometry()
 root.option_add("*tearOff", FALSE)
@@ -88,26 +119,39 @@ count_message=-1
 voices=['aidar', 'baya', 'kseniya', 'xenia', 'eugene', 'random']
 voice_var = StringVar(value=voices[1])
 temp_var=DoubleVar(value=0.7)
+
+free=BooleanVar(value=False)
 def listen():
     global count_message
     count_message += 3
     slyx=recognize.recognize_speak()
+    print('You: ', slyx)
     st.insert((str(count_message) + '.0'), os.getlogin()+': '+slyx+'\n')
     count_message += 3
     user_answer_entry.delete("0", "end")
-    ans=gpt.answer(str(slyx), temp_var.get())
+    if free.get():
+        ans= freegpt.freegpt(str(slyx), combobox_models.get(), temp_var.get())
+    else:
+        ans=gpt.answer(str(slyx), temp_var.get())
     st.insert((str(count_message) + '.0'), 'CustomGPT: '+ ans+'\n')
+    print('CustomGPT: ', ans)
+    if active_voice.get() == True: voice.speak(ans, speaker=combobox.get())
 
-    voice.speak(ans, speaker=combobox.get())
 def typing():
     global count_message
+    ans=''
     count_message += 3
+    print('You: ', user_answer_entry.get())
     st.insert((str(count_message) + '.0'), os.getlogin()+': '+user_answer_entry.get()+'\n')
     count_message += 3
-    ans=gpt.answer(str(user_answer_entry.get()), temp_var.get())
+    if free.get():
+        ans= freegpt.freegpt(str(user_answer_entry.get()), combobox_models.get(), temp_var.get())
+    else:
+        ans=gpt.answer(str(user_answer_entry.get()), temp_var.get())
     user_answer_entry.delete("0", "end")
     st.insert((str(count_message) + '.0'), 'CustomGPT: ' + ans+'\n')
-    voice.speak(ans, speaker=combobox.get())
+    print('CustomGPT: ', ans)
+    if active_voice.get() == True: voice.speak(ans, speaker=combobox.get())
 
 def update_slider(*args):
     temp_var.set(round(temp_var.get(), 2))
@@ -135,7 +179,6 @@ def generate():
     main_image.save('img/tempimg.png')
     main_image = PhotoImage(file="img/tempimg.png")
     image_mega.configure(image=main_image)
-
 
 st = customtkinter.CTkTextbox(root, wrap="word", width=600, height=400)
 st.grid(column=0, row=0, columnspan=40, rowspan=30)
@@ -180,10 +223,29 @@ slider.grid(row=20, column=50, columnspan=10)
 btn_temp=customtkinter.CTkButton(root, textvariable=temp_var)
 btn_temp.grid(row=20, column=60, columnspan=20)
 
+voice_active = customtkinter.CTkSwitch(root, text="Озвучка текста", variable=active_voice)
+voice_active.grid(row= 22, column=46, columnspan=10)
 
+free_switch = customtkinter.CTkSwitch(root, text="Бесплатный ChatGPT    ", variable=free)
+free_switch.grid(row= 28, column=46, columnspan=13)
+
+label = customtkinter.CTkLabel(root, text="Модель (бесп. ChatGPT): ")
+label.grid(row=31, column=46, columnspan=9)
+
+combobox_models = customtkinter.CTkComboBox(root, values=gptmodel, width=200)
+combobox_models.grid(row=31, column=56, columnspan=20)
+#gitbutton=customtkinter.CTkButton(root, width=240, fg_color="black", text_color="white", text="Проект на GitHub")
+#gitbutton.grid(row=22, column=45, columnspan=6, rowspan=30)
+
+#qrcodelabel=customtkinter.CTkLabel(root, text="", image=qrcode)
+#qrcodelabel.grid(row=22, column=55, columnspan=30, rowspan=30)
 
 ####################################STABILITY AI################2.0###############################################
 
+#image_label=customtkinter.CTkLabel(root, text="", image=stability, justify=LEFT)
+#image_label.grid(column=85, row=0, columnspan=50)
+
+###
 label_model=customtkinter.CTkLabel(root, text='              Model: ', justify=LEFT)
 label_model.grid(column=85, row=5)
 
