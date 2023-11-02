@@ -47,7 +47,7 @@ Changelog:
 
 ## Generate Images
 ### OpenAi
-Command: "/генерация_изображения запрос РАЗМЕРхРАЗМЕР"
+Command: "/генерация_изображения запрос РАЗМЕРхРАЗМЕР" in Rus version or "/generate_image RESPONSE SIZExSIZE" in Eng version
 
 ### Stability
 Enter the query in the input line and click the "generate image" button
