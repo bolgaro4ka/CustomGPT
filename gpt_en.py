@@ -5,10 +5,11 @@ apis=open('keys.apikey').read().split(', ')
 openai.api_key = str(apis[0])
 messages = []
 
-def validetor(question):
+
+def validetor_en(question):
     question=question.split(' ')
     print(question)
-    if ('погода' in question) or ('погоде' in question) or ('погоду' in question) or ('погодка' in question) or ('Погода' in question):
+    if ('weather' in question) or ('weathers' in question):
         try:
             params = {'q': 'Novodugino,RU', 'units': 'metric', 'lang': 'ru',
                       'appid': str(apis[1])}
@@ -16,13 +17,13 @@ def validetor(question):
             if not response:
                 raise
             w = response.json()
-            return (f" На улице {w['weather'][0]['description']} {round(w['main']['temp'])} градусов")
+            return (f" Weather: {w['weather'][0]['description']} {round(w['main']['temp'])} C")
 
         except:
-            return (' Произошла ошибка при попытке запроса к ресурсу API, проверь код')
-    elif ('заглушка' in question) or ('Заглушка' in question):
-        return 'Эта фраза является заглушкой, для того чтобы проверить программу не задействуя ЧатДжиБиТи! В недрах тундры выдры в г+етрах т+ырят в вёдра ядра кедров.'
-    elif ('/генерация_изображения' in question):
+            return ('Error! Cheak API-key')
+    elif ('TSWW' in question):
+        return 'This phrase is a stub to test the program without using ChatGPT! In the depths of the tundra, otters dig cedar kernels into buckets.'
+    elif ('/generate_image' in question):
         del question[0]
         response = openai.Image.create(
             size=question[-1],
@@ -31,14 +32,13 @@ def validetor(question):
         )
         image_url = response['data'][0]['url']
         print(image_url)
-        return f'Изображение {question[:-1]}, размером {question[-1]} сгенерированно! Ссылка: {image_url}'
-    elif ([''] == question) or ([' ']==question): return 'Пустой запрос!'
+        return f'Image {question[:-1]}, size: {question[-1]} generated! Link: {image_url}'
+    elif ([''] == question) or ([' ']==question): return 'Empty question!'
     else: return 'OMG'
 
 
-
 def answer(question, temperature):
-    valid=validetor(question)
+    valid=validetor_en(question)
     print(valid)
     if valid == "OMG":
         message = question  # вводим сообщение

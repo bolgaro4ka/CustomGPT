@@ -1,4 +1,6 @@
-import gpt, voice, recognize
+import gpt_en as gpt
+import recognize_en as recognize
+import voice_en as voice
 from tkinter import *
 from tkinter import ttk, filedialog
 import customtkinter
@@ -12,7 +14,7 @@ import freegpt
 apis=open('keys.apikey').read().split(', ')
 
 root = customtkinter.CTk() # create CTk window like you do with the Tk window
-root.title("CustomGPT v.2.1.1-GUI-RU")
+root.title("CustomGPT v.2.1.1-GUI-EN")
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark  # Themes: blue (default), dark-blue, green
 
 root.geometry()
@@ -27,12 +29,10 @@ main_image.save('img/temp.png')
 main_image = PhotoImage(file="img/temp.png")
 
 #qrcode=PhotoImage(file="img/qr-code.png")
-about="""    CustomGPT (КастомЖдиПиТи) является не 
-    коммерческим проектом, основанный на языковой 
-    модели ChatGPT 3.5 turbo, с графическим 
-    интерфейсом CustomTkinter, озвучкой SileroTTS. 
-    Пожалуйста не распростроняйте API-ключ, если по 
-    каким-то причинам он остался в проекте."""
+about="""   CustomGPT is not commercial project based on language
+    ChatGPT 3.5 turbo models, with graphic CustomTkinter interface, 
+    SileroTTS voice acting. Please do not distribute the API key 
+    if for some reason he remained in the project."""
 
 '''
 image_text = """Поддерживается генерация изображений!
@@ -116,7 +116,7 @@ root.geometry()
 root.option_add("*tearOff", FALSE)
 root.resizable(False, False)
 count_message=-1
-voices=['aidar', 'baya', 'kseniya', 'xenia', 'eugene', 'random']
+voices=['en_0', 'en_1', 'en_2', 'en_3', 'en_4', 'en_5', 'en_6', 'en_7', 'en_8', 'en_9', 'en_10', 'en_11', 'en_12', 'en_13', 'en_14', 'en_15', 'en_16', 'en_17', 'en_18', 'en_19', 'en_20', 'en_21', 'en_22', 'en_23', 'en_24', 'en_25', 'en_26', 'en_27', 'en_28', 'en_29', 'en_30', 'en_31', 'en_32', 'en_33', 'en_34', 'en_35', 'en_36', 'en_37', 'en_38', 'en_39', 'en_40', 'en_41', 'en_42', 'en_43', 'en_44', 'en_45', 'en_46', 'en_47', 'en_48', 'en_49', 'en_50', 'en_51', 'en_52', 'en_53', 'en_54', 'en_55', 'en_56', 'en_57', 'en_58', 'en_59', 'en_60', 'en_61', 'en_62', 'en_63', 'en_64', 'en_65', 'en_66', 'en_67', 'en_68', 'en_69', 'en_70', 'en_71', 'en_72', 'en_73', 'en_74', 'en_75', 'en_76', 'en_77', 'en_78', 'en_79', 'en_80', 'en_81', 'en_82', 'en_83', 'en_84', 'en_85', 'en_86', 'en_87', 'en_88', 'en_89', 'en_90', 'en_91', 'en_92', 'en_93', 'en_94', 'en_95', 'en_96', 'en_97', 'en_98', 'en_99', 'en_100', 'en_101', 'en_102', 'en_103', 'en_104', 'en_105', 'en_106', 'en_107', 'en_108', 'en_109', 'en_110', 'en_111', 'en_112', 'en_113', 'en_114', 'en_115', 'en_116', 'en_117', 'random']
 voice_var = StringVar(value=voices[1])
 temp_var=DoubleVar(value=0.7)
 
@@ -183,16 +183,16 @@ def generate():
 st = customtkinter.CTkTextbox(root, wrap="word", width=600, height=400)
 st.grid(column=0, row=0, columnspan=40, rowspan=30)
 
-user_answer_entry = customtkinter.CTkEntry(root, width=600, placeholder_text="Введите запрос, и CustomGPT вам ответит!")
+user_answer_entry = customtkinter.CTkEntry(root, width=600, placeholder_text="Enter your query and CustomGPT will answer you!")
 user_answer_entry.grid(row=31, column=0, columnspan=40)
 
-user_answer_button = customtkinter.CTkButton(root, text="Отправить", width=262, command=typing)
+user_answer_button = customtkinter.CTkButton(root, text="Send", width=282, command=typing)
 user_answer_button.grid(row=32, column=0, columnspan=18)
 
-mic_btn = customtkinter.CTkButton(root, text="Сказать", width=150, command=listen)
+mic_btn = customtkinter.CTkButton(root, text="Say", width=170, command=listen)
 mic_btn.grid(row=32, column=19, columnspan=10)
 
-mic_btn = customtkinter.CTkButton(root, text="Сгенерировать изображение", width=150, command=generate)
+mic_btn = customtkinter.CTkButton(root, text="Generate image", width=148, command=generate)
 mic_btn.grid(row=32, column=29, columnspan=12)
 
 
@@ -202,32 +202,32 @@ image_label.grid(row=0, column=45, columnspan=90, rowspan=1)
 about_text = customtkinter.CTkLabel(root, text=about, justify="left", text_color='#888888')
 about_text.grid(row=1, column=45, columnspan=20, rowspan=12)
 
-settings_text = customtkinter.CTkLabel(root, text=" Настройки:", justify="center", text_color='#DDDDDD', font=('Arial', 20))
+settings_text = customtkinter.CTkLabel(root, text=" Settings:", justify="center", text_color='#DDDDDD', font=('Arial', 20))
 settings_text.grid(row=13, column=45, columnspan=5, rowspan=5)
 
-label = customtkinter.CTkLabel(root, text="Голос: ")
+label = customtkinter.CTkLabel(root, text="Voice: ")
 label.grid(row=18, column=45, columnspan=3)
 
-combobox = customtkinter.CTkComboBox(root, values=voices, width=320)
-combobox.grid(row=18, column=50, columnspan=20)
+combobox = customtkinter.CTkComboBox(root, values=voices, width=360)
+combobox.grid(row=18, column=51, columnspan=20)
 
-temp = customtkinter.CTkLabel(root, text="Температура: ")
+temp = customtkinter.CTkLabel(root, text="Temperature: ")
 temp.grid(row=20, column=45, columnspan=5)
 
-slider = customtkinter.CTkSlider(root, from_=0, to=2, width=170, variable=temp_var, command=update_slider)
+slider = customtkinter.CTkSlider(root, from_=0, to=2, width=150, variable=temp_var, command=update_slider)
 slider.grid(row=20, column=50, columnspan=10)
 
 btn_temp=customtkinter.CTkButton(root, textvariable=temp_var)
 btn_temp.grid(row=20, column=60, columnspan=20)
 
-voice_active = customtkinter.CTkSwitch(root, text="Озвучка текста", variable=active_voice)
-voice_active.grid(row= 22, column=45, columnspan=8)
+voice_active = customtkinter.CTkSwitch(root, text="Voice over text", variable=active_voice)
+voice_active.grid(row= 22, column=46, columnspan=7)
 
-free_switch = customtkinter.CTkSwitch(root, text="Бесплатный ChatGPT", variable=free)
-free_switch.grid(row= 28, column=45, columnspan=10)
+free_switch = customtkinter.CTkSwitch(root, text="Free ChatGPT", variable=free)
+free_switch.grid(row= 28, column=46, columnspan=7)
 
-label = customtkinter.CTkLabel(root, text="Модель (бесп. ChatGPT): ")
-label.grid(row=31, column=45, columnspan=9)
+label = customtkinter.CTkLabel(root, text="Model (Free ChatGPT): ")
+label.grid(row=31, column=46, columnspan=7)
 
 combobox_models = customtkinter.CTkComboBox(root, values=gptmodel, width=200)
 combobox_models.grid(row=31, column=56, columnspan=20)
@@ -243,26 +243,26 @@ combobox_models.grid(row=31, column=56, columnspan=20)
 #image_label.grid(column=85, row=0, columnspan=50)
 
 ###
-label_model=customtkinter.CTkLabel(root, text='             Модель: ', justify=LEFT)
+label_model=customtkinter.CTkLabel(root, text='              Model: ', justify=LEFT)
 label_model.grid(column=85, row=5)
 
 model_combo = customtkinter.CTkComboBox(root, values=models, width=180, height=27)
 model_combo.grid(column=90, row=5)
 
-label_width=customtkinter.CTkLabel(root, text=' Размер: ', justify=LEFT)
+label_width=customtkinter.CTkLabel(root, text=' Size: ', justify=LEFT)
 label_width.grid(column=100, row=5)
 
 width_entry = customtkinter.CTkComboBox(root, values=sizes, width=180, height=27)
 width_entry.grid(column=105, row=5)
 
 
-label_sampler=customtkinter.CTkLabel(root, text='           Семплер: ', justify=LEFT)
+label_sampler=customtkinter.CTkLabel(root, text='           Sampler: ', justify=LEFT)
 label_sampler.grid(column=85, row=7)
 
 sampler_combo = customtkinter.CTkComboBox(root, values=samplers_list, width=180, height=27)
 sampler_combo.grid(column=90, row=7)
 
-save_btn = customtkinter.CTkButton(root, text="Сохранить в...", width=180, height=30, command=choise_dir, fg_color="blue")
+save_btn = customtkinter.CTkButton(root, text="Choose save directory", width=180, height=30, command=choise_dir, fg_color="blue")
 save_btn.grid(column=105, row=7)
 
 image_mega=customtkinter.CTkLabel(root, text="", image=main_image)
