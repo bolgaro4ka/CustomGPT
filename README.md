@@ -77,3 +77,5 @@ Model: stable-diffusion-v1
  - Vosk model (https://alphacephei.com/vosk/)
 
 **When copying, indicate authorship!**
+
+## By Bolgaro4ka
