@@ -9,6 +9,7 @@ import os
 import text_to_image
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 import freegpt
+import webbrowser
 
 # pip install -U g4f
 apis=open('keys.apikey').read().split(', ')
@@ -28,7 +29,8 @@ main_image = main_image.resize((int(width_photo//4.2), int(height_photo//4.2
 main_image.save('img/temp.png')
 main_image = PhotoImage(file="img/temp.png")
 
-#qrcode=PhotoImage(file="img/qr-code.png")
+gitlogo=PhotoImage(file="img/img.png")
+
 about="""   CustomGPT is not commercial project based on language
     ChatGPT 3.5 turbo models, with graphic CustomTkinter interface, 
     SileroTTS voice acting. Please do not distribute the API key 
@@ -85,7 +87,11 @@ sizes=[
 '512x512'
 ]
 
-gptmodel =['palm',
+gptmodel = ['gpt-3.5-turbo-16k',
+'gpt-3.5-turbo-16k-0613',
+'gpt-4-0613']
+
+'''['palm',
 'h2ogpt-gm-oasst1-en-2048-falcon-7b-v3',
 'h2ogpt-gm-oasst1-en-2048-falcon-40b-v1',
 'h2ogpt-gm-oasst1-en-2048-open-llama-13b',
@@ -101,9 +107,6 @@ gptmodel =['palm',
 'bloom',
 'flan-t5-xxl',
 'code-davinci-002',
-'gpt-3.5-turbo-16k',
-'gpt-3.5-turbo-16k-0613',
-'gpt-4-0613',
 'text-ada-001',
 'text-babbage-001',
 'text-curie-001',
@@ -111,6 +114,7 @@ gptmodel =['palm',
 'text-davinci-003',
 'llama13b-v2-chat',
 'llama7b-v2-chat']
+'''
 customtkinter.set_default_color_theme("green")  # Themes: "blue" (standard), "green", "dark-blue"
 root.geometry()
 root.option_add("*tearOff", FALSE)
@@ -126,14 +130,14 @@ def listen():
     count_message += 3
     slyx=recognize.recognize_speak()
     print('You: ', slyx)
-    st.insert((str(count_message) + '.0'), os.getlogin()+': '+slyx+'\n')
+    st.insert((str(count_message) + '.0'), os.getlogin()+': '+slyx+'\n\n')
     count_message += 3
     user_answer_entry.delete("0", "end")
     if free.get():
         ans= freegpt.freegpt(str(slyx), combobox_models.get(), temp_var.get())
     else:
         ans=gpt.answer(str(slyx), temp_var.get())
-    st.insert((str(count_message) + '.0'), 'CustomGPT: '+ ans+'\n')
+    st.insert((str(count_message) + '.0'), 'CustomGPT: '+ ans+'\n\n')
     print('CustomGPT: ', ans)
     if active_voice.get() == True: voice.speak(ans, speaker=combobox.get())
 
@@ -142,14 +146,14 @@ def typing():
     ans=''
     count_message += 3
     print('You: ', user_answer_entry.get())
-    st.insert((str(count_message) + '.0'), os.getlogin()+': '+user_answer_entry.get()+'\n')
+    st.insert((str(count_message) + '.0'), os.getlogin()+': '+user_answer_entry.get()+'\n\n')
     count_message += 3
     if free.get():
         ans= freegpt.freegpt(str(user_answer_entry.get()), combobox_models.get(), temp_var.get())
     else:
         ans=gpt.answer(str(user_answer_entry.get()), temp_var.get())
     user_answer_entry.delete("0", "end")
-    st.insert((str(count_message) + '.0'), 'CustomGPT: ' + ans+'\n')
+    st.insert((str(count_message) + '.0'), 'CustomGPT: ' + ans+'\n\n')
     print('CustomGPT: ', ans)
     if active_voice.get() == True: voice.speak(ans, speaker=combobox.get())
 
@@ -231,6 +235,9 @@ label.grid(row=31, column=46, columnspan=7)
 
 combobox_models = customtkinter.CTkComboBox(root, values=gptmodel, width=200)
 combobox_models.grid(row=31, column=56, columnspan=20)
+
+author=customtkinter.CTkButton(root, text="By5 Bolgaro4ka", width=415, fg_color="black", text_color="white", image= gitlogo, command=lambda: webbrowser.open('https://github.com/bolgaro4ka'))
+author.grid(row=32, column=45, columnspan=30)
 #gitbutton=customtkinter.CTkButton(root, width=240, fg_color="black", text_color="white", text="Проект на GitHub")
 #gitbutton.grid(row=22, column=45, columnspan=6, rowspan=30)
 

@@ -12,7 +12,6 @@ def freegpt(message, model, temperature):
     response = g4f.ChatCompletion.create(
         model=model,
         messages=[{"role": "user", "content": message}],
-        stream=True,
         tempetarure=temperature
     )
     for messages in response:
