@@ -11,9 +11,9 @@ ChatGPT-based CustomTkinter GUI bot with voice input and Silero TTS voice
  - CustomGPT for Russian users
  - CustomGPT_en for English users
 
-## Update v. 2.1.2-GUI
+## Update v. 2.2.1-GUI-Release
 Changelog:
- - Now there is free access to these models:
+ - Delete models:
     - palm
     - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3
     - h2ogpt-gm-oasst1-en-2048-falcon-40b-v1
@@ -30,9 +30,6 @@ Changelog:
     - bloom
     - flan-t5-xxl
     - code-davinci-002
-    - gpt-3.5-turbo-16k
-    - **gpt-3.5-turbo-16k-0613**
-    - **gpt-4-0613**
     - text-ada-001
     - text-babbage-001
     - text-curie-001
@@ -40,10 +37,8 @@ Changelog:
     - text-davinci-003
     - llama13b-v2-chat
     - llama7b-v2-chat
- - Added a button to turn off voice response
  - Bugfixes
  - Update interface
- - ADD ENGLISH LANGUAGE
 
 ## Generate Images
 ### OpenAi
