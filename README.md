@@ -2,9 +2,9 @@
 ChatGPT-based CustomTkinter GUI bot with voice input and Silero TTS voice
 
 ## Images
-![Снимок экрана 2023-11-01 171523](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/f738850f-ab82-4dfe-9e1b-8fc28f247adf)
+![image](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/20d4e9db-26ce-4d99-9e2c-c596f13c804f)
 
-![Снимок экрана 2023-11-01 171714](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/19095d91-1fc9-4452-83b1-66a3c2dd2721)
+![image](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/3c655f99-493b-4ea5-b6dd-8237cc270d0f)
 
 
 ## Info
