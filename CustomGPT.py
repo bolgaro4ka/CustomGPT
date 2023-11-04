@@ -9,12 +9,12 @@ import os
 import text_to_image
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 import freegpt
-
+from colorama import Fore, Back
 # pip install -U g4f
 apis=open('keys.apikey').read().split(', ')
 
 root = customtkinter.CTk() # create CTk window like you do with the Tk window
-root.title("CustomGPT v.2.1.1-GUI-RU")
+root.title("CustomGPT v.2.2.1-GUI-RU-Release")
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark  # Themes: blue (default), dark-blue, green
 
 root.geometry()
@@ -131,7 +131,8 @@ def listen():
     global count_message
     count_message += 3
     slyx=recognize.recognize_speak()
-    print('You: ', slyx)
+    print(Fore.BLUE + 'You: ', slyx)
+    print(Fore.WHITE)
     st.insert((str(count_message) + '.0'), os.getlogin()+': '+slyx+'\n\n')
     count_message += 3
     user_answer_entry.delete("0", "end")
@@ -140,14 +141,15 @@ def listen():
     else:
         ans=gpt.answer(str(slyx), temp_var.get())
     st.insert((str(count_message) + '.0'), 'CustomGPT: '+ ans+'\n\n')
-    print('CustomGPT: ', ans)
+    print(Fore.GREEN + 'CustomGPT: ', ans)
     if active_voice.get() == True: voice.speak(ans, speaker=combobox.get())
 
 def typing():
     global count_message
     ans=''
     count_message += 3
-    print('You: ', user_answer_entry.get())
+    print(Fore.BLUE + 'You: ', user_answer_entry.get())
+    print(Fore.WHITE)
     st.insert((str(count_message) + '.0'), os.getlogin()+': '+user_answer_entry.get()+'\n\n')
     count_message += 3
     if free.get():
@@ -156,7 +158,7 @@ def typing():
         ans=gpt.answer(str(user_answer_entry.get()), temp_var.get())
     user_answer_entry.delete("0", "end")
     st.insert((str(count_message) + '.0'), 'CustomGPT: ' + ans+'\n\n')
-    print('CustomGPT: ', ans)
+    print(Fore.GREEN + 'CustomGPT: ', ans)
     if active_voice.get() == True: voice.speak(ans, speaker=combobox.get())
 
 def update_slider(*args):
