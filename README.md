@@ -67,6 +67,7 @@ Model: stable-diffusion-v1
  - numpy
  - stability-sdk
  - g4f
+ - colorama
 
 ## API keys
  - ChatGPT (https://platform.openai.com/account/api-keys)
