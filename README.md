@@ -1,6 +1,13 @@
 # CustomGPT
 ChatGPT-based CustomTkinter GUI bot with voice input and Silero TTS voice
 
+## How to start program
+ - Download [Python](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe)
+ - In cmd go to dir project
+ - and execute this commands:
+    - ``` pip install -r pequirements.txt ```
+    - ``` python CustomGPT.py ```
+
 ## Images
 ![image](https://github.com/bolgaro4ka/CustomGPT/assets/123888141/20d4e9db-26ce-4d99-9e2c-c596f13c804f)
 
